@@ -1,0 +1,59 @@
+import React, { Component } from 'react';
+import { Form, Row, Col, Button } from 'react-bootstrap';
+import Header from './header'
+//var headerSectionLeft = { display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }
+
+export default class Home extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    handleLogin(e){
+        console.log("Login successfull")
+        let path = '/project';
+        this.props.history.push(path); 
+    }
+    
+    render() {
+        return (
+            <div>
+                 <Header portalName="" showIcon="false"></Header>
+                <Row>
+                    <Col>
+                        <div className='section-left'>
+                            <div>
+                                <h5>PROJECT DELIVERY <br></br>SYSTEMS</h5>
+                            </div>
+                        </div>
+                    </Col>
+                    <Col style={{backgroundColor:"#283384"}}>
+                        <div className='section-right'>
+                            <div>
+                                <Form>
+                                    <Form.Group controlId="formBasicEmail">
+                                        <Form.Label>Username</Form.Label>
+                                        <Form.Control type="text" placeholder="" />
+                                    </Form.Group>
+
+                                    <Form.Group controlId="formBasicPassword">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control type="password"/>
+                                    </Form.Group>
+                                    <Button className="margin-left-30" variant="primary" onClick={this.handleLogin} type="submit" id="login-button">
+                                        Login
+  </Button>
+                                </Form>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+           </div>
+        )
+    }
+}
+
+
+
+

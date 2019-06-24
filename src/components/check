@@ -1,0 +1,108 @@
+// edit.component.js
+
+import React, { Component } from 'react';
+import {Nav,Navbar,NavDropdown, Button, Row,Col, Table} from 'react-bootstrap';
+
+import Header from './header'
+export default class Project extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.handleCreate = this.handleCreate.bind(this);
+
+        this.state ={
+            projects: [],
+            showCreateButton: true
+        }
+    }
+    handleCreate(e){
+        this.setState({
+            showCreateButton: false
+        })
+
+    }
+  render() {
+    return (
+        <div>
+            <Header portalName="PROJECT PORTAL" showIcon="true"/>
+            <Navbar bg="white" expand="lg" className="projectNav">
+                <Navbar.Brand href="#home">Project Portal Logo</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#home">Projects</Nav.Link>
+                        <Nav.Link href="#link">Users</Nav.Link>
+                        <Nav.Link href="#link">Reports</Nav.Link>
+                        {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        </NavDropdown> */}
+                     </Nav>
+                </Navbar.Collapse> 
+            </Navbar> 
+            {/* <div style={{width:"85%"}} id="pro">
+                {(this.state.showCreateButton) &&  <Button style={{float:"right",position:"relative"}} variant="primary" onClick={this.handleCreate} type="submit" id="login-button">
+                                                        Create
+                </Button>}
+               
+            </div> */}
+            <br></br>
+            {/* <div className="project-center"> 
+    {(this.state.projects.length)?<div></div>:<div>No Projects Available</div>}
+            </div> */}
+            {/* <div className="container-fluid">
+             <Row>
+             <Col lg={5}>
+                 <Row>
+                     <Col lg={4}></Col>
+                     <Col lg={4}>a</Col>
+                     <Col lg={4}>a</Col>
+                 </Row>
+             </Col>
+             <Col lg={7}>
+                 <Row>
+                     <Col lg={7}></Col>
+                     <Col lg={5}>a</Col>
+                     
+                 </Row>
+             </Col>
+            
+             </Row>
+            </div> */}
+            <div className="container-fluid">
+               
+                 <Row>
+                     <Col lg={2}></Col>
+                     <Col lg={8}>{(this.state.showCreateButton) &&  <Button  id="create-button" variant="primary" onClick={this.handleCreate} type="submit">
+                                                        Create
+                           
+                </Button>}
+                
+                <div className="div2">
+                   <p>No Projects Available</p>
+                </div>
+                {/* <Table striped bordered hover style={{}}>
+                        <thead>
+                            <tr>
+                                <th >Release Version</th>
+                                <th>Release Date</th>
+                                <th>Landscape</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                        </tbody>
+                    </Table> */}
+
+</Col>
+                     <Col lg={2}></Col>
+                 </Row>
+            </div>
+        </div>
+    )
+  }
+}
