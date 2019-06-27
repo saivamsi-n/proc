@@ -11,9 +11,13 @@ export default class Users   extends Component {
         super(props);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
+        this.makeActive = this.makeActive.bind(this);
+
 
         this.state ={
-            users:[]
+            users:[],
+            groups:[],
+            
         }
     }
 
@@ -25,7 +29,9 @@ export default class Users   extends Component {
         let path = '/project';
         this.props.history.push(path); 
     }
-    
+    makeActive(e){
+        console.log(e)
+    }
     render() {
         return (
             <div>
@@ -51,22 +57,22 @@ export default class Users   extends Component {
                 </Navbar.Collapse> 
             </Navbar>
             <br/>
-            <div className="container">
+            <div className="container" style={{marginTop:"30px"}}>
                 <Row>
-                    <Col xs={3}>
+                    <Col xs={12}>
                         <ul class="nav nav-tabs tabs-left flex-column sideways">
-                            <li><a href="#home-v" data-toggle="tab">Home</a></li>
-                            <li><a href="#profile-v" data-toggle="tab">Profile</a></li>
-                            <li><a href="#messages-v" data-toggle="tab">Messages</a></li>
-                            <li><a href="#settings-v" data-toggle="tab">Settings</a></li>
+                            <li><a href="#users" className={this.state.usersActive && 'active'}
+                              onClick={() => this.makeActive("users")}
+                            data-toggle="tab">Users</a></li>
+                            <li><a href="#groups" className={this.state.groupsActive && 'active'} 
+                              onClick={() => this.makeActive("groups")}
+                            data-toggle="tab">Groups</a></li>
                         </ul>
-                    </Col>
-                    <Col xs={9}>
-                        <div class="tab-content">
-                            <div class="tab-pane" id="home-v">Home Tab.</div>
-                            <div class="tab-pane" id="profile-v">Profile Tab.</div>
-                            <div class="tab-pane" id="messages-v">Messages Tab.</div>
-                            <div class="tab-pane" id="settings-v">Settings Tab.</div>
+                        <div class="tab-content sideways-content">
+                            <div class="tab-pane" className={this.state.usersActive && 'active'} id="users">
+                                
+                            </div>
+                            <div class="tab-pane" className={this.state.groupsActive && 'active'} id="groups">Profile Tab.</div>
                         </div>
                     </Col>
                 </Row>
@@ -115,7 +121,6 @@ export default class Users   extends Component {
         )
     }
 }
-
 
 
 

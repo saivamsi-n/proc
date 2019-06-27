@@ -1,9 +1,10 @@
 // edit.component.js
 
 import React, { Component } from 'react';
-import {Nav,Navbar,NavDropdown, Button, Row,Col, Form} from 'react-bootstrap';
+import {Nav,Navbar, Button, Row,Col, Form} from 'react-bootstrap';
 
 import Header from './header'
+import Axios from 'axios'
 export default class ProjectCreate extends Component {
     constructor(props) {
         super(props);
@@ -20,8 +21,28 @@ export default class ProjectCreate extends Component {
     }
     
     handleCreate(e){
-        let path = '/project/1';
-        this.props.history.push(path);  
+        // let path = '/project/1';
+        // this.props.history.push(path);  
+        const projectPostUrl = "http://localhost:8080/project";
+        var postData = {
+            name: this.state.name,
+            description: this.state.description
+        }
+        Axios.post(projectPostUrl,postData)
+        .then(result => {
+            console.log(result.data)
+            if (result.data) {
+               this.setState({
+                    projects: result.data
+                })
+            }
+            else {
+                alert(result.data.message);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
     handleCancel(e){
         console.log("cancel in")
@@ -46,13 +67,6 @@ export default class ProjectCreate extends Component {
                         <Nav.Link href="#home">Projects</Nav.Link>
                         <Nav.Link href="#link">Users</Nav.Link>
                         <Nav.Link href="#link">Reports</Nav.Link>
-                        {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown> */}
                      </Nav>
                 </Navbar.Collapse> 
             </Navbar> 

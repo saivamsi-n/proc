@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
-import Header from './header'
-//var headerSectionLeft = { display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }
-
+import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -19,17 +16,19 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                 <Header portalName="" showIcon="false"></Header>
+            <div className="top-color"></div>
+            <Container fluid={true}>
                 <Row>
                     <Col>
                         <div className='section-left'>
                             <div>
-                                <h5>PROJECT DELIVERY <br></br>SYSTEMS</h5>
+                            <img src={require('./image.png')} className="logo-image" style={{ width:"200px", height:"100px"}} />
+                            <h5>PROJECT DELIVERY <br></br>SYSTEMS</h5>
                             </div>
                         </div>
                     </Col>
                     <Col style={{backgroundColor:"#283384"}}>
-                        <div className='section-right'>
+                    <div className='section-right'>
                             <div>
                                 <Form>
                                     <Form.Group controlId="formBasicEmail">
@@ -43,17 +42,17 @@ export default class Home extends Component {
                                     </Form.Group>
                                     <Button className="margin-left-30" variant="primary" onClick={this.handleLogin} type="submit" id="login-button">
                                         Login
-  </Button>
+                                    </Button>
                                 </Form>
                             </div>
                         </div>
                     </Col>
                 </Row>
+           </Container>
            </div>
         )
     }
 }
-
 
 
 
