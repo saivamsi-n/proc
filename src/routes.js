@@ -5,17 +5,22 @@ import Home from './components/home';
 import Project from './components/projectPortalList';
 import ProjectCreate from './components/projectPortalCreate';
 import ProjectDetail from './components/projectPortalDetail';
-import Users from './components/operatorPortalUsersList';
+import ProjectUsers from './components/projectUsers';
+import ProjectUsersCreate from './components/projectUsersCreate';
+import ProjectUseDetail from './components/projectUsersDetail';
 
 const routes = (
         <Switch>
             <Route exact path="/" component={Home} /> 
             {/* <Route  path='/release/:fromReleaseVersion/:landscape/copy/' component={CopyRelease} />
             <Route  path='/release/:fromReleaseVersion/:landscape' component={VersionEntityDetail} /> */}
-            <Route exact path="/project" component={Project} />
-            <Route exact path="/project/create" component={ProjectCreate} />
-            <Route exact path="/project/1" component={ProjectDetail} />
-            <Route exact path="/users" component={Users} />
+            <Route exact path="/projects" component={Project} />
+            <Route exact path="/projects/create" component={ProjectCreate} />
+            <Route exact path="/projects/:id" component={ProjectDetail} />
+            <Route exact path="/users" component={ProjectUsers} />
+            <Route exact path="/users/create" component={ProjectUsersCreate} />
+            <Route exact path="/users/:username" component={ProjectUseDetail} />
+
             </Switch>
 );
 export default routes;

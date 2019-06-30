@@ -159,6 +159,18 @@ padding-top: 50px;
   padding-bottom: 40px;
 }
 
+.active-tab-component{
+  border-bottom: 5px solid #44649B;
+}
+tr {
+  cursor: pointer;
+}
+
+.top-color {
+  background: #283384;
+  padding: 4vh;
+}
+/* 
 
 #operator-tabs {
   color: #283384 !important;
@@ -324,4 +336,4 @@ padding-top: 50px;
   padding: 15px;
 }
 
-
+ */

@@ -9,7 +9,7 @@ export default class Home extends Component {
 
     handleLogin(e){
         console.log("Login successfull")
-        let path = '/project';
+        let path = '/projects';
         this.props.history.push(path); 
     }
     
@@ -22,7 +22,7 @@ export default class Home extends Component {
                     <Col>
                         <div className='section-left'>
                             <div>
-                            <img src={require('./image.png')} className="logo-image" style={{ width:"200px", height:"100px"}} />
+                            <img src={require('./image.png')} alt='logo' className="logo-image" style={{ width:"200px", height:"100px"}} />
                             <h5>PROJECT DELIVERY <br></br>SYSTEMS</h5>
                             </div>
                         </div>

@@ -1,10 +1,10 @@
-// edit.component.js
-
 import React, { Component } from 'react';
-import {Nav,Navbar, Button, Row,Col, Form} from 'react-bootstrap';
+import { Button, Row,Col, Form} from 'react-bootstrap';
 
-import Header from './header'
-import Axios from 'axios'
+import ProjectsNav from './projectPortalNav';
+import Axios from 'axios';
+import Header from './header';
+
 export default class ProjectCreate extends Component {
     constructor(props) {
         super(props);
@@ -21,35 +21,37 @@ export default class ProjectCreate extends Component {
     }
     
     handleCreate(e){
-        // let path = '/project/1';
-        // this.props.history.push(path);  
-        const projectPostUrl = "http://localhost:8080/project";
-        var postData = {
-            name: this.state.name,
-            description: this.state.description
+        if(this.state.name !== ""){
+            const projectPostUrl = "http://localhost:8080/project";
+            var postData = {
+                name: this.state.name,
+                description: this.state.description
+            }
+            Axios.post(projectPostUrl,postData)
+            .then(result => {
+                console.log(result.data)
+                if (result.status) {
+                    alert("Project created successfully")
+                    let path = '/projects';
+                    this.props.history.push(path); 
+                }
+                else {
+                    alert("cannot create porject");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
-        Axios.post(projectPostUrl,postData)
-        .then(result => {
-            console.log(result.data)
-            if (result.data) {
-               this.setState({
-                    projects: result.data
-                })
-            }
-            else {
-                alert(result.data.message);
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        else{
+            alert("Please enter project name to proceed")
+        }
+       
     }
     handleCancel(e){
         console.log("cancel in")
-        this.setState({
-            name:"",
-            description:""
-        })
+        let path = '/projects';
+         this.props.history.push(path); 
     }
 
     handleChange(e){
@@ -59,17 +61,8 @@ export default class ProjectCreate extends Component {
     return (
         <div>
             <Header portalName="PROJECT PORTAL" showIcon="true"/>
-            <Navbar bg="white" expand="lg" className="projectNav">
-                <Navbar.Brand href="#home">Project Portal Logo</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#home">Projects</Nav.Link>
-                        <Nav.Link href="#link">Users</Nav.Link>
-                        <Nav.Link href="#link">Reports</Nav.Link>
-                     </Nav>
-                </Navbar.Collapse> 
-            </Navbar> 
+            <ProjectsNav projects="true"/>
+
           <div className="container-fluid">
                
                  <Row>

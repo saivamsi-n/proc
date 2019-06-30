@@ -1,12 +1,13 @@
 
 import React, { Component } from 'react';
-import { Button, Row,Col, Table} from 'react-bootstrap';
-
-import ProjectsNav from './projectPortalNav';
+import {Button, Row,Col, Table} from 'react-bootstrap';
 import Axios from 'axios'
-import Header from './header'
 
-export default class Project extends Component {
+import Header from './header'
+import ProjectsNav from './projectPortalNav';
+
+
+export default class ProjectUsers extends Component {
     constructor(props) {
         super(props);
         
@@ -14,17 +15,17 @@ export default class Project extends Component {
         this.handleClick = this.handleClick.bind(this);
 
         this.state ={
-            projects: [],
+            users: [],
             showCreateButton: true,
             tableclassName: ""
         }
-        const projectGetUrl = "http://localhost:8080/project"
-        Axios.get(projectGetUrl)
+        const usersGetUrl = "http://localhost:8080/user"
+        Axios.get(usersGetUrl)
         .then(result => {
             console.log(result.data)
             if (result.data) {
                this.setState({
-                    projects: result.data
+                    users: result.data
                 })
             }
             else {
@@ -37,22 +38,21 @@ export default class Project extends Component {
     }
     
     handleCreate(e){
-        let path = '/projects/create';
+        let path = '/users/create';
         this.props.history.push(path);  
     }
-
     handleClick(id){
         if(id){
-            let path = '/projects/'+id;
+            let path = '/users/'+id;
             this.props.history.push(path);  
         }
     }
 
-    render() {
+  render() {
     return (
         <div>
             <Header portalName="PROJECT PORTAL" showIcon="true"/>
-            <ProjectsNav projects="true"/>
+            <ProjectsNav users="true"/>
             <div className="container-fluid">
                 <Row>
                     <Col lg={2}></Col>
@@ -60,24 +60,23 @@ export default class Project extends Component {
                     <Button  id="create-button" variant="primary" onClick={this.handleCreate} type="submit">
                                                         Create
                             </Button>
-                            {(this.state.projects.length>0) ? 
-                            <Table striped bordered hover className="projects-table">
+                            {(this.state.users.length>0) ? 
+                            <Table striped bordered hover className="users-table">
                                 <thead>
                                     <tr>
                                         <th className="table-header">Name</th>
-                                        <th className="table-header">Description</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.projects.map((item) => {
-                                        return  <tr onClick={() =>this.handleClick(item._id)}>
-                                            <td>{item.name}</td>
-                                            <td>{item.description}</td>
+                                    {this.state.users.map((item) => {
+                                       
+                                       return item.username && <tr onClick={() =>this.handleClick(item.username)}>
+                                            <td>{item.username}</td>
                                         </tr>
                                 })}    
                                 </tbody>
                             </Table> :
-                            <div id="no-projects"><p>No Projects Available</p></div>
+                            <div id="no-projects"><p>No Users Available</p></div>
                             }
                     </Col>
                     <Col lg={2}></Col>
